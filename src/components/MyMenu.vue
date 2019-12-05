@@ -4,6 +4,10 @@
             <Icon type="ios-contact" />
             用户管理
         </MenuItem>
+        <MenuItem name="/role">
+            <Icon type="ios-alert" />
+            角色管理
+        </MenuItem>
     </Menu>
 </template>
 
@@ -17,8 +21,8 @@
         },
         methods:{
             redirect(name){
-                console.log("redirect=>",name)
-                this.$router.push('/user')
+                // console.log("redirect=>",name)
+                this.$router.push(name)
             }
         }
     }

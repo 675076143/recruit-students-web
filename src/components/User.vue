@@ -1,7 +1,5 @@
 <template>
     <div class="user">
-
-
         <Card>
             <p slot="title" style="text-align: left">
                 <Icon type="ios-contact" />
@@ -41,7 +39,14 @@
 </template>
 
 <script>
-    import {reqCreateUser, reqGetAllRoles, reqGetAllUsers, reqUpdateUser, reqUpdateUserInRoleName} from "../api";
+    import {
+        reqCreateUser,
+        reqDeleteUser,
+        reqGetAllRoles,
+        reqGetAllUsers,
+        reqUpdateUser,
+        reqUpdateUserInRoleName
+    } from "../api";
 
     export default {
         name: "User",
@@ -150,8 +155,15 @@
                     this.modalEditData = this.data[index]
                 }
             },
-            remove (index) {
-                this.data.splice(index, 1);
+            async remove (index) {
+                const userID = this.data[index].userID
+                const result = await reqDeleteUser(userID,this)
+                if(result.code==="200"){
+                    this.$Message.success("删除成功！")
+                }else {
+                    this.$Message.error("删除失败")
+                }
+                this.initUsers()
             },
             async updateOrCreateUser (option) {
                 const {userName,userID,email,phone,roleName} = this.modalEditData
