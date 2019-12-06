@@ -58,7 +58,11 @@
                         if(result.code === '200'){
                             this.$Message.success("登录成功！")
                             store.commit('setUser',result.data)
-                            this.$router.push("/")
+
+                            if(this.remember){//如果记住密码，则往LocalStoage中存储数据
+                                storageUtils.setUser(result.data)
+                            }
+                            await this.$router.push("/")
                         }else {
                             this.$Message.error(result.message)
                         }

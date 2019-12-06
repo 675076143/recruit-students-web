@@ -49,49 +49,55 @@ const menuConfig = [
 
     },
     {
-        key:'/products',
+        key:'/data',
+        icon:'',
+        title:'数据录入'
+
+    },
+    {
+        key:'/recruit',
         icon:'appstore',
-        title:'商品',
+        title:'录取',
         children:[
             {
-                key:'/category',
+                key:'/topBatch',
                 icon:'edit',
-                title:'品类管理'
+                title:'一批'
             },
             {
-                key:'/product',
+                key:'/subBatch',
                 icon:'edit',
-                title:'商品管理'
+                title:'二批'
             }
         ]
     },
     {
-        key:'/chart',
+        key:'/query',
         icon:'pie-chart',
-        title:'图表',
+        title:'查询',
         children:[
             {
-                key:'/bar',
+                key:'/score',
                 icon:'bar-chart',
-                title:'柱状图'
+                title:'学生成绩'
             },
             {
-                key:'/line',
+                key:'/info',
                 icon:'line-chart',
-                title:'折线图'
+                title:'学生信息'
             },
             {
-                key:'/pie',
+                key:'/regExam',
                 icon:'pie-chart',
-                title:'饼状图'
+                title:'报考信息'
             },
+            {
+                key:'/plan',
+                icon:'pie-chart',
+                title:'招生计划'
+            }
         ]
     },
-    {
-        key:'/api',
-        icon:'api',
-        title:'接口文档'
-    }
 ]
 
 export default menuConfig

@@ -3,18 +3,26 @@
         <Icon type="ios-home" size="30" />
         <span>
             {{userInfo}}
-            <a>登出</a>
+            <a @click="logout">登出</a>
         </span>
     </div>
 </template>
 
 <script>
     import store from '../store'
+    import storageUtils from "../util/storageUtils";
     export default {
         name: "TopBar",
         computed:{
             userInfo(){
                 return "欢迎您："+store.state.user.userName
+            }
+        },
+        methods:{
+            logout(){
+                store.commit('setUser',{})
+                this.$router.push('/login')
+                storageUtils.removeUser()
             }
         }
     }

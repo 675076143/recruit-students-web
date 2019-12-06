@@ -7,7 +7,28 @@
     <router-view/>
   </div>
 </template>
+<script>
+    import storageUtils from "./util/storageUtils";
+    import store from "./store";
 
+    export default {
+        mounted() {
+            //从localStorage中读取用户信息
+            if(storageUtils.getUser()){
+                store.commit('setUser',storageUtils.getUser())
+                console.log('store中保存user信息')
+                console.log(store.state.user)
+            }
+            //如果没有user信息, 重定向到登录页面
+            if(!store.state.user.token){
+                console.log('store中没有user信息,重定向到登录')
+                this.$router.push('/login')
+                console.log(store.state.user)
+            }
+        }
+    }
+
+</script>
 <style lang="less">
 html,body{
     height: 100%;
