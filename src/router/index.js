@@ -22,6 +22,10 @@ const routes = [
       {
         path: '/role',
         component: () => import(/* webpackChunkName: "about" */ '../components/Role')
+      },
+      {
+        path: '/data',
+        component: () => import(/* webpackChunkName: "about" */ '../components/Data')
       }
     ]
   },

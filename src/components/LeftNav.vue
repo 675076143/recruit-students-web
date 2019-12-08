@@ -8,6 +8,10 @@
             <Icon type="ios-alert" />
             角色管理
         </MenuItem>
+        <MenuItem name="/data">
+            <Icon type="ios-alert" />
+            数据录入
+        </MenuItem>
         {{menus}}
     </Menu>
 </template>
@@ -34,6 +38,7 @@
         methods:{
             redirect(name){
                 // console.log("redirect=>",name)
+                console.log('menus=>',this.menus)
                 this.$router.push(name)
             },
             /**
