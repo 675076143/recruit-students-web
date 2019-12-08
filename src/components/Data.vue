@@ -44,6 +44,8 @@
 </style>
 
 <script>
+    import {validateScore} from "../util/validateUtils";
+
     var excelData;
     import XLSX from 'xlsx'
 
@@ -55,7 +57,8 @@
                 this.errorNum = errorRow.length
             },
             rowClassName (row, index) {
-                if (row.学号 === undefined) {
+                console.log(row.学号,row.语文,row.数学,row.英语,row.总分)
+                if(!validateScore(row.学号,row.语文,row.数学,row.英语,row.总分)){
                     return 'demo-table-error-row';
                 }
                 this.getErrorNum()
