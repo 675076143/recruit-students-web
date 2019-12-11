@@ -85,6 +85,7 @@
 
     var excelData;
     import XLSX from 'xlsx'
+    import {reqInsertScore} from "../api";
 
     export default {
         name: "Data",
@@ -204,8 +205,14 @@
                 this.modalEditData = {...data}
                 this.editIndex = index
             },
-            uploadData(){
-                console.log(this.data)
+            async uploadData(){
+                const result = await reqInsertScore(this.data,this)
+                console.log(result)
+                if(result.code==="200"){
+                    this.$Message.success(result.message)
+                }else {
+                    this.$Message.error(result.message)
+                }
             },
             cancel () {
                 this.$Message.info('Clicked cancel');

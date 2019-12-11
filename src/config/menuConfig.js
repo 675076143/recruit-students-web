@@ -65,8 +65,8 @@ const menuConfig = [
                 title:'一批'
             },
             {
-                key:'/ios-star-outline',
-                icon:'edit',
+                key:'/subBatch',
+                icon:'ios-star-outline',
                 title:'二批'
             }
         ]

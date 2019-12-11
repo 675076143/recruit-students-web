@@ -31,3 +31,7 @@ export const reqGetRoles= (that)=>{
 export const reqUpdateRolePermission = (roleID,authName,permissionNames,that)=>{
     return ajax(BASE_URL+'/api/rolePermissions/'+roleID,{authName,permissionNames},'PUT',that)
 }
+//导入数据
+export const reqInsertScore = (scoreList,that)=>{
+    return ajax(BASE_URL+'/api/scores',scoreList,'POST',that)
+}

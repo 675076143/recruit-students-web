@@ -29,6 +29,7 @@
             console.log(store.state.user)
             const menus = this.generateMenuByMenuConfig(menuConfig)
             this.menus = menus
+            console.log("生成的menu=>",menus)
         },
         data(){
             return{
@@ -53,28 +54,41 @@
                 //得到当前请求的路由路径
                 const path = this.$route.path
                 let template = ''
-                return menuConfig.map(item=>{
-                   if(this.permission(item)){
-                       //一级菜单
-                       if(!item.children){
-                            return item
-                       }else {//二级菜单
-                           return {
-                               key:item.key,
-                               icon:item.icon,
-                               title:item.title,
-                               children:this.generateMenuByMenuConfig(item.children)
-                           }
-                       }
-                   }
-                })
+                // return menuConfig.map(item=>{
+                //    if(this.permission(item)){
+                //        //一级菜单
+                //        if(!item.children){
+                //             return item
+                //        }else {//二级菜单
+                //            return {
+                //                key:item.key,
+                //                icon:item.icon,
+                //                title:item.title,
+                //                children:this.generateMenuByMenuConfig(item.children)
+                //            }
+                //        }
+                //    }
+                // })
+                return menuConfig.reduce((pre,cur)=>{
+                    if(this.permission(cur)){//一级菜单
+                        if(!cur.children){
+                            pre.push(cur)
+                        }else {
+                            pre.push({
+                                key:cur.key,
+                                icon:cur.icon,
+                                title:cur.title,
+                                children:this.generateMenuByMenuConfig(cur.children)
+                            })
+                        }
+                    }
+                    return pre
+                },[])
             },
             /**
              * 判断当前登录用户是否有权限
              */
             permission(item){
-                //得到当前请求的路由路径
-                const path = this.$route.path
                 const {isPublic} = item
                 const {userName,permissionName} = this.user
                 /**
@@ -84,13 +98,17 @@
                  */
 
                 if(userName==='admin'||isPublic||permissionName.indexOf(item.key)!==-1){
-                    console.log('有权限=>',item.key)
+                    console.log('permission-item=>',item.key)
                     return true
-                }else if (item.children){
+                }
+                else if (item.children){
                     console.log("子item有权限")
                     //4. 如果当前用户有此item的某个子item的权限
+                    console.log('permission-child-item=>',item.children.key)
                     return !!item.children.find(child=>permissionName.indexOf(child.key)!==-1);
-                }else {
+                }
+                else {
+                    console.log("permission-没有权限=>",item)
                     return false
                 }
             }
