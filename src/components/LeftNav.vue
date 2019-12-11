@@ -46,29 +46,13 @@
                 this.$router.push(name)
             },
             /**
-            * 使用map动态生成菜单
+            * 使用reduce动态生成菜单
             * */
             generateMenuByMenuConfig(menuConfig){
                 menuConfig = [...menuConfig]
                 console.log(menuConfig)
                 //得到当前请求的路由路径
                 const path = this.$route.path
-                let template = ''
-                // return menuConfig.map(item=>{
-                //    if(this.permission(item)){
-                //        //一级菜单
-                //        if(!item.children){
-                //             return item
-                //        }else {//二级菜单
-                //            return {
-                //                key:item.key,
-                //                icon:item.icon,
-                //                title:item.title,
-                //                children:this.generateMenuByMenuConfig(item.children)
-                //            }
-                //        }
-                //    }
-                // })
                 return menuConfig.reduce((pre,cur)=>{
                     if(this.permission(cur)){//一级菜单
                         if(!cur.children){
@@ -92,7 +76,7 @@
                 const {isPublic} = item
                 const {userName,permissionName} = this.user
                 /**
-                 * 1.当前用户是admin
+                 * 1.当前用户是admin()
                  * 2.当前item是公开的
                  * 3.当前用户拥有此item的权限
                  */
