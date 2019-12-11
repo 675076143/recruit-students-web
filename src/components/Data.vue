@@ -5,10 +5,11 @@
                 <Icon type="ios-contact" />
                 数据录入
             </p>
-            <div slot="extra">
+            <div class="card-extra" slot="extra">
                 <input type="file" @change="loadFile($event)" style="width: 320px;"
                        accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet">
                 <span>错误数:{{errorNum}}</span>
+                <Button type="success" :style="{display:uploadBtn}" @click="uploadData" icon="md-cloud-upload">上传</Button>
             </div>
 
             <Table style="height: 100%" :row-class-name="rowClassName" border :columns="columns" :data="data" />
@@ -37,18 +38,19 @@
             </Form>
 
         </Modal>
-        <Button class="upload" shape="circle" type="success" :style="{display:uploadBtn}" @click="uploadData"><Icon type="md-checkmark" /></Button>
     </div>
 </template>
 <style lang="less">
     .data{
-        .upload{
-            color: white;
-            height: 50px;
-            width: 50px;
-            position: fixed;
-            right: 5%;
-            bottom: 5%;
+        .card-extra{
+            display: flex;
+            align-items: center;
+            input[type=file]{
+                width: 180px!important;
+            }
+            span{
+                margin: 0 10px;
+            }
         }
     }
 
@@ -91,7 +93,7 @@
              * 如果无错误，显示上传按钮
             * */
             uploadBtn(){
-                return this.errorNum===0?'block':'none'
+                return this.errorNum===0&&this.data.length!=0?'block':'none'
             },
             totalScore(){
                 return this.modalEditData.语文+this.modalEditData.数学+this.modalEditData.英语

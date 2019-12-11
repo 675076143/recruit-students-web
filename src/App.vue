@@ -12,7 +12,7 @@
     import store from "./store";
 
     export default {
-        mounted() {
+        created() {
             //从localStorage中读取用户信息
             if(storageUtils.getUser()){
                 store.commit('setUser',storageUtils.getUser())
@@ -25,6 +25,9 @@
                 this.$router.push('/login')
                 console.log(store.state.user)
             }
+        },
+        mounted() {
+
         }
     }
 

@@ -32,40 +32,40 @@
 
 const menuConfig = [
     {
-        key:'/home',
-        icon:'home',
+        key:'/',
+        icon:'ios-home',
         title:'首页',
         isPublic:true
     },
     {
         key:'/user',
-        icon:'user',
+        icon:'ios-contact',
         title:'用户管理'
     },
     {
         key:'/role',
-        icon:'safety-certificate',
+        icon:'ios-contact',
         title:'角色管理'
 
     },
     {
         key:'/data',
-        icon:'',
+        icon:'ios-paper',
         title:'数据录入'
 
     },
     {
         key:'/recruit',
-        icon:'appstore',
+        icon:'ios-star',
         title:'录取',
         children:[
             {
                 key:'/topBatch',
-                icon:'edit',
+                icon:'ios-star-half',
                 title:'一批'
             },
             {
-                key:'/subBatch',
+                key:'/ios-star-outline',
                 icon:'edit',
                 title:'二批'
             }
@@ -73,27 +73,27 @@ const menuConfig = [
     },
     {
         key:'/query',
-        icon:'pie-chart',
+        icon:'ios-search',
         title:'查询',
         children:[
             {
                 key:'/score',
-                icon:'bar-chart',
+                icon:'ios-document',
                 title:'学生成绩'
             },
             {
                 key:'/info',
-                icon:'line-chart',
+                icon:'ios-document',
                 title:'学生信息'
             },
             {
                 key:'/regExam',
-                icon:'pie-chart',
+                icon:'ios-document',
                 title:'报考信息'
             },
             {
                 key:'/plan',
-                icon:'pie-chart',
+                icon:'ios-document',
                 title:'招生计划'
             }
         ]
